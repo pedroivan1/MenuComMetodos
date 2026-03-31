@@ -27,8 +27,10 @@ class Program {
             switch (opcao)
             {
                 case "1":
+                    CalculadoraMediaPond.CalcularMediaPond();
                     break;
                 case "2":
+                    CalculadoraImc.CalcularImc();
                     break;
                 case "3":
                     break;
@@ -43,7 +45,9 @@ class Program {
                 case "8":
                     break;
                 case "0":
+                    Console.WriteLine("Até a próxima.");
                     mostrarMenu = false;
+                    UI.Aguardar();
                     break;
                 default:
                     Console.Clear();

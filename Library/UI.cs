@@ -23,12 +23,16 @@ public static class UI
     {
         System.Threading.Thread.Sleep(1250);
     }
+    public static void Aguardar(int ms)
+    {
+        System.Threading.Thread.Sleep(ms);
+    }
 
     public static void Erro(string text)
     {
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine(text);
         Console.ResetColor();
-        Aguardar();
+        Aguardar(2000);
     }
 }
