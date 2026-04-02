@@ -35,4 +35,12 @@ public static class UI
         Console.ResetColor();
         Aguardar(2000);
     }
+
+    public static void Erro(string text, int ms)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(text);
+        Console.ResetColor();
+        System.Threading.Thread.Sleep(ms);
+    }
 }
