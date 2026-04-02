@@ -5,7 +5,7 @@ namespace MenuComMetodos;
 
 public static class CalculadoraImc
 {
-    public static void Main()
+    public static void CalcularIMC()
     {   
         UI.LimparTela();
         Console.Write("Digite sua altura: ");
@@ -51,7 +51,7 @@ public static class CalculadoraImc
 
 public static class CalculadoraMediaPond
 {
-    public static void Main()
+    public static void CalcularMedia()
     {
         UI.LimparTela();
         Console.Write("Qual o nome do aluno? ");
@@ -80,37 +80,64 @@ public static class CalculadoraMediaPond
 
 public static class CalculadoraSimples
 {
-    public static void Main()
+    public static void CalcularNumeros()
     {
+        UI.LimparTela();
+        Console.Write("Digite um número: ");
+        string firstInput = Console.ReadLine();
+        Console.Write("Digite outro número: ");
+        string secondInput = Console.ReadLine();
+        if (int.TryParse(firstInput, CultureInfo.InvariantCulture, out int firstNum) && 
+        int.TryParse(secondInput, CultureInfo.InvariantCulture, out int secondNum))
+        {
             Console.WriteLine("[1] - Somar");
             Console.WriteLine("[2] - Subtrair");
             Console.WriteLine("[3] - Multiplicar");
             Console.WriteLine("[4] - Dividir");
-            Console.WriteLine("Escolha uma operação: ");
+            Console.Write("Escolha uma opção: ");
             string input = Console.ReadLine();
             if (int.TryParse(input, CultureInfo.InvariantCulture, out int opcao))
             {
-                Console.WriteLine();
                 switch (opcao)
                 {
-                case 1:
-
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                default:
-                    Console.WriteLine("Opção inválida");
-                    break;
+                    case 1:
+                        Console.WriteLine($"A Soma entre {firstNum} e {secondNum} é {firstNum + secondNum}");
+                        UI.Aguardar(2000);
+                        break;
+                    case 2:
+                        Console.WriteLine($"A Subtração entre {firstNum} e {secondNum} é {firstNum - secondNum}");
+                        UI.Aguardar(2000);
+                        break;
+                    case 3:
+                        Console.WriteLine($"A Multiplicação entre {firstNum} e {secondNum} é {firstNum * secondNum}");
+                        UI.Aguardar(2000);
+                        break;
+                    case 4:
+                        if (secondNum == 0)
+                        {
+                            UI.Erro("Não é possível dividir por 0.");
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"A Divisão entre {firstNum} e {secondNum} é {(firstNum / secondNum):F2}");
+                            UI.Aguardar(2000);
+                            break;
+                        }
+                    default:
+                        UI.Erro("Opção inválida.");
+                        break;
                 }
             }
             else
             {
-                
+                UI.Erro("Opção inválida.");
             }
+        }
+        else
+        {
+            UI.Erro("Parâmetro(s) inválidos.");
+        }
     }
 }
 

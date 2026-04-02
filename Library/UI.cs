@@ -21,7 +21,7 @@ public static class UI
 
     public static void Aguardar()
     {
-        System.Threading.Thread.Sleep(1250);
+        System.Threading.Thread.Sleep(1500);
     }
     public static void Aguardar(int ms)
     {

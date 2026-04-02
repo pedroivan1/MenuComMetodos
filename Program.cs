@@ -27,12 +27,13 @@ class Program {
             switch (opcao)
             {
                 case "1":
-                    CalculadoraMediaPond.CalcularMediaPond();
+                    CalculadoraMediaPond.CalcularMedia();
                     break;
                 case "2":
-                    CalculadoraImc.CalcularImc();
+                    CalculadoraImc.CalcularIMC();
                     break;
                 case "3":
+                    CalculadoraSimples.CalcularNumeros();
                     break;
                 case "4":
                     break;
