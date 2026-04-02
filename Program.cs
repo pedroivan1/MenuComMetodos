@@ -36,6 +36,7 @@ class Program {
                     CalculadoraSimples.CalcularNumeros();
                     break;
                 case "4":
+                    GeradorDeTabuada.GerarTabuada();
                     break;
                 case "5":
                     break;

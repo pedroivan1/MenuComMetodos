@@ -141,3 +141,28 @@ public static class CalculadoraSimples
     }
 }
 
+public static class GeradorDeTabuada
+{
+    public static void GerarTabuada()
+    {
+        UI.LimparTela();
+        Console.Write("Qual número você deseja gerar uma tabuda? ");
+        string input = Console.ReadLine();
+        if (int.TryParse(input, CultureInfo.InvariantCulture, out int numero))
+        {
+            int contador = 0;
+            while (contador <= 10)
+            {
+                Console.WriteLine($"{numero} X {contador} = {numero*contador}");
+                contador++;
+            }
+            Console.WriteLine($"Tabuada do {numero} gerada!");
+            UI.Aguardar(3500);
+        }
+        else
+        {
+            UI.Erro("Apenas números inteiros.");
+        }
+    }    
+} 
+
