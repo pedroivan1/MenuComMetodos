@@ -5,7 +5,7 @@ namespace MenuComMetodos;
 
 public static class CalculadoraImc
 {
-    public static void CalcularImc()
+    public static void Main()
     {   
         UI.LimparTela();
         Console.Write("Digite sua altura: ");
@@ -51,7 +51,7 @@ public static class CalculadoraImc
 
 public static class CalculadoraMediaPond
 {
-    public static void CalcularMediaPond()
+    public static void Main()
     {
         UI.LimparTela();
         Console.Write("Qual o nome do aluno? ");
@@ -80,6 +80,37 @@ public static class CalculadoraMediaPond
 
 public static class CalculadoraSimples
 {
-    
+    public static void Main()
+    {
+            Console.WriteLine("[1] - Somar");
+            Console.WriteLine("[2] - Subtrair");
+            Console.WriteLine("[3] - Multiplicar");
+            Console.WriteLine("[4] - Dividir");
+            Console.WriteLine("Escolha uma operação: ");
+            string input = Console.ReadLine();
+            if (int.TryParse(input, CultureInfo.InvariantCulture, out int opcao))
+            {
+                Console.WriteLine();
+                switch (opcao)
+                {
+                case 1:
+
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                default:
+                    Console.WriteLine("Opção inválida");
+                    break;
+                }
+            }
+            else
+            {
+                
+            }
+    }
 }
 
