@@ -39,6 +39,7 @@ class Program {
                     GeradorDeTabuada.GerarTabuada();
                     break;
                 case "5":
+                    SomadorComCondicao.Somador();
                     break;
                 case "6":
                     break;

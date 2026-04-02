@@ -166,3 +166,35 @@ public static class GeradorDeTabuada
     }    
 } 
 
+public static class SomadorComCondicao
+{
+    public static void Somador()
+    {
+        UI.LimparTela();
+        int soma = 0;
+        
+        while (true)
+        {
+            Console.Write("Digite um número: ");
+            string input = Console.ReadLine();
+            if (int.TryParse(input, CultureInfo.InvariantCulture, out int numero))
+            {
+                if (numero >= 0)
+                {
+                    soma += numero;
+                }
+                else
+                {
+                    Console.WriteLine($"Soma total: {soma}");
+                    UI.Aguardar(4000);
+                    return;
+                }
+            }
+            else
+            {
+                UI.Erro("Apenas números inteiros.", 500);
+            }
+        }
+    }
+}
+
