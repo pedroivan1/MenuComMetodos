@@ -198,3 +198,30 @@ public static class SomadorComCondicao
     }
 }
 
+public static class ValidadorDeSenhas
+{
+    public static void Validar()
+    {
+        UI.LimparTela();
+        string senha = "Csharp123";
+        int tentativas = 3;
+
+        do
+        {
+            Console.Write("Digite uma senha: ");
+            string input = Console.ReadLine();
+            if (input == senha)
+            {
+                Console.WriteLine("Acesso permitido.");
+                UI.Aguardar(3000);
+                return;
+            }
+            else
+            {
+                tentativas--;
+                UI.Erro($"Acesso negado. Você tem {tentativas} tentativas restante(s).");
+            }
+        }
+        while (tentativas > 0);
+    }
+}

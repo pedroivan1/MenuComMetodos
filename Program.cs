@@ -42,6 +42,7 @@ class Program {
                     SomadorComCondicao.Somador();
                     break;
                 case "6":
+                    ValidadorDeSenhas.Validar();
                     break;
                 case "7":
                     break;
