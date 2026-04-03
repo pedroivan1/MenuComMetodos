@@ -48,6 +48,8 @@ class Program {
                     ConversorDeTemperaturas.Converter();
                     break;
                 case "8":
+                    SimuladorATM atm  = new SimuladorATM();
+                    atm.Simular();
                     break;
                 case "0":
                     Console.WriteLine("Até a próxima.");

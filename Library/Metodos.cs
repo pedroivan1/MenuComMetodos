@@ -1,6 +1,8 @@
 using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Net.NetworkInformation;
+using System.Security.Cryptography.X509Certificates;
 
 namespace MenuComMetodos;
 
@@ -269,5 +271,91 @@ public static class ConversorDeTemperaturas
             UI.Erro("Parâmetro inválido.");
         }
         
+    }
+}
+
+public class SimuladorATM
+{
+    public decimal saldoConta = 1000;
+    public void Sacar(decimal valor)
+    {
+        if (saldoConta < valor)
+        {
+            UI.Erro("Saldo insuficiente.", 1000);
+        }
+        else
+        {
+            saldoConta -= valor;
+        }
+    }
+    public void Depositar(decimal valor)
+    {
+        saldoConta += valor;
+    }
+
+    public void VerSaldo()
+    {
+        Console.WriteLine($"Seu saldo é {saldoConta:C}");
+    }
+
+    public void Simular()
+    {
+        while (true)
+        {
+            UI.LimparTela();
+            UI.Separador();
+            Console.WriteLine("  Simulador de Caixa");
+            UI.Separador();
+            Console.WriteLine("[1] - Sacar");
+            Console.WriteLine("[2] - Depositar");
+            Console.WriteLine("[3] - Ver Saldo");
+            Console.WriteLine("[4] - Sair");
+            Console.Write("Escolha uma opção: ");
+
+            string input = Console.ReadLine();
+
+            if (int.TryParse(input, CultureInfo.InvariantCulture, out int opcao))
+            {
+                switch (opcao)
+                {
+                    case 1:
+                        Console.Write("Quanto você deseja sacar? ");
+                        string inputSaque = Console.ReadLine();
+                        if (decimal.TryParse(inputSaque, CultureInfo.InvariantCulture, out decimal valorSaque))
+                        {
+                            Sacar(valorSaque);
+                        }
+                        else
+                        {
+                            UI.Erro("Valor inválido");
+                        }
+                        break;
+                    case 2:
+                        Console.Write("Quanto você deseja depositar? ");
+                        string inputDeposito = Console.ReadLine();
+                        if (decimal.TryParse(inputDeposito, CultureInfo.InvariantCulture, out decimal valorDeposito))
+                        {
+                            Depositar(valorDeposito);
+                        }
+                        else
+                        {
+                            UI.Erro("Valor inválido");
+                        }
+                        break;
+                    case 3:
+                        VerSaldo();
+                        UI.Aguardar();
+                        break;
+                    case 4:
+                        return;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                UI.Erro("Opção inválida");
+            }
+        }
     }
 }
