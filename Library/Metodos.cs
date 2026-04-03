@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Globalization;
 
 namespace MenuComMetodos;
@@ -223,5 +224,50 @@ public static class ValidadorDeSenhas
             }
         }
         while (tentativas > 0);
+    }
+}
+
+public static class ConversorDeTemperaturas
+{
+    public static void Converter()
+    {
+        UI.LimparTela();
+        Console.Write("Digite a temperatura: ");
+        string inputTemperatura = Console.ReadLine();
+        if (double.TryParse(inputTemperatura, CultureInfo.InvariantCulture, out double temperatura))
+        {
+            Console.WriteLine("[1] - Converter Celsius > Fahrenheit");
+            Console.WriteLine("[2] - Converter Fahrenheit > Celsius");
+            Console.Write("Escolha uma opção: ");
+            string inputConversao = Console.ReadLine();
+            if (int.TryParse(inputConversao, CultureInfo.InvariantCulture, out int opcao))
+            {
+                switch (opcao)
+                {
+                    case 1:
+                        double conversaoFahrenheit = temperatura * 1.8 + 32;
+                        Console.WriteLine($"{temperatura}°C é equivalente a {conversaoFahrenheit}ºF");
+                        UI.Aguardar(3000);
+                        break;
+                    case 2:
+                        double conversaoCelsius = 5.0/9.0 * (temperatura - 32);
+                        Console.WriteLine($"{temperatura}°F é equivalente a {conversaoCelsius:F2}ºC");
+                        UI.Aguardar(3000);
+                        break;
+                    default:
+                        UI.Erro("Opção inválida.");
+                        break;
+                }
+            }
+            else
+            {
+                UI.Erro("Opção inválida.");
+            }
+        }
+        else
+        {
+            UI.Erro("Parâmetro inválido.");
+        }
+        
     }
 }

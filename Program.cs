@@ -45,6 +45,7 @@ class Program {
                     ValidadorDeSenhas.Validar();
                     break;
                 case "7":
+                    ConversorDeTemperaturas.Converter();
                     break;
                 case "8":
                     break;
