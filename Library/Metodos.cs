@@ -141,7 +141,7 @@ public static class GeradorDeTabuada
     public static void GerarTabuada()
     {
         UI.LimparTela();
-        Console.Write("Qual número você deseja gerar uma tabuda? ");
+        Console.Write("Qual número você deseja gerar uma tabuada? ");
         string input = Console.ReadLine();
         if (int.TryParse(input, CultureInfo.InvariantCulture, out int numero))
         {
@@ -281,6 +281,8 @@ public class SimuladorATM
             else
             {
                 saldoConta -= valor;
+                Console.WriteLine($"Você sacou {valor:C}");
+                UI.Aguardar(2000);
             }
         }
     }
@@ -293,6 +295,8 @@ public class SimuladorATM
         else
         {
             saldoConta += valor;
+            Console.WriteLine($"Você depositou {valor:C}");
+            UI.Aguardar(2000);
         }
     }
 
