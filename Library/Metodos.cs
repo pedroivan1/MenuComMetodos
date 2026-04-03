@@ -1,8 +1,5 @@
 using System;
-using System.ComponentModel;
 using System.Globalization;
-using System.Net.NetworkInformation;
-using System.Security.Cryptography.X509Certificates;
 
 namespace MenuComMetodos;
 
@@ -34,14 +31,9 @@ public static class CalculadoraImc
                 Console.WriteLine($"Seu IMC é {imc:F2} e sua classificação é Sobrepeso.");
                 UI.Aguardar(2500);
             }
-            else if (imc < 39.9)
-            {
-                Console.WriteLine($"Seu IMC é {imc:F2} e sua classificação é Obesidade.");
-                UI.Aguardar(2500);
-            }
             else
             {
-                Console.WriteLine($"Seu IMC é {imc:F2} e sua classificação é Obesidade Grave.");
+                Console.WriteLine($"Seu IMC é {imc:F2} e sua classificação é Obesa.");
                 UI.Aguardar(2500);
             }
         }
@@ -123,7 +115,7 @@ public static class CalculadoraSimples
                         }
                         else
                         {
-                            Console.WriteLine($"A Divisão entre {firstNum} e {secondNum} é {(firstNum / secondNum):F2}");
+                            Console.WriteLine($"A Divisão entre {firstNum} e {secondNum} é {(double)firstNum / secondNum:F2}");
                             UI.Aguardar(2000);
                             break;
                         }
@@ -153,11 +145,9 @@ public static class GeradorDeTabuada
         string input = Console.ReadLine();
         if (int.TryParse(input, CultureInfo.InvariantCulture, out int numero))
         {
-            int contador = 0;
-            while (contador <= 10)
+            for (int i = 1; i <= 10; i++)
             {
-                Console.WriteLine($"{numero} X {contador} = {numero*contador}");
-                contador++;
+                Console.WriteLine($"{numero} X {i} = {i * numero}");
             }
             Console.WriteLine($"Tabuada do {numero} gerada!");
             UI.Aguardar(3500);
@@ -207,7 +197,7 @@ public static class ValidadorDeSenhas
     {
         UI.LimparTela();
         string senha = "Csharp123";
-        int tentativas = 3;
+        bool acesso = false;
 
         do
         {
@@ -216,16 +206,15 @@ public static class ValidadorDeSenhas
             if (input == senha)
             {
                 Console.WriteLine("Acesso permitido.");
+                acesso = true;
                 UI.Aguardar(3000);
-                return;
             }
             else
             {
-                tentativas--;
-                UI.Erro($"Acesso negado. Você tem {tentativas} tentativas restante(s).");
+                UI.Erro($"Acesso negado.");
             }
         }
-        while (tentativas > 0);
+        while (acesso==false);
     }
 }
 
@@ -279,18 +268,32 @@ public class SimuladorATM
     public decimal saldoConta = 1000;
     public void Sacar(decimal valor)
     {
-        if (saldoConta < valor)
+        if (valor < 0)
         {
-            UI.Erro("Saldo insuficiente.", 1000);
+            UI.Erro("Valor inválido.");            
         }
         else
         {
-            saldoConta -= valor;
+            if (saldoConta < valor)
+            {
+                UI.Erro("Saldo insuficiente.", 1000);
+            }
+            else
+            {
+                saldoConta -= valor;
+            }
         }
     }
     public void Depositar(decimal valor)
     {
-        saldoConta += valor;
+        if (valor < 0)
+        {
+            UI.Erro("Valor inválido.");
+        }
+        else
+        {
+            saldoConta += valor;
+        }
     }
 
     public void VerSaldo()
